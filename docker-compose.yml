@@ -1,0 +1,29 @@
+version: '3'
+services:
+  jekyll:
+    build: 
+      context: docker/jekyll
+      args:
+        uid: "${_UID:-1000}"
+        gid: "${_GID:-1000}"
+    volumes:
+      - .:/home/jekyll/workspace
+    working_dir: /home/jekyll/workspace
+    ports:
+      - "4000:4000"
+    stdin_open: true
+    tty: true
+    hostname: jekyll.local
+    container_name: jekyll.local
+    command: bash
+    networks:
+      - bridge
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 512M
+
+networks:
+  bridge:
+    external: true
