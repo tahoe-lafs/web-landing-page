@@ -1,0 +1,11 @@
+main:
+  - title: "Home"
+    url: "#"
+  - title: "Documentation"
+    url: "#documentation"
+  - title: "Contribute"
+    url: "#contribute"
+  - title: "Blog"
+    url: "#blog"
+  - title: "About"
+    url: "#about"
