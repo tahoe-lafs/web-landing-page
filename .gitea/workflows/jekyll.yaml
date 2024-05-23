@@ -45,13 +45,13 @@ jobs:
           jekyll build --verbose
       - name: Prepare ssh key
         id: prepare_ssh_key
-        if: ${{ github.ref == 'main' }}
+        if: ${{ gitea.ref == 'refs/heads/main' }}
         run: |
           echo "${{ secrets.WWW_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
       - name: Publish Jekyll site
         id: publish_site
-        if: ${{ github.ref == 'main' }}
+        if: ${{ gitea.ref == 'refs/heads/main' }}
         run: |
           rsync -halvi \
             -e "ssh -a -x -o StrictHostKeyChecking=no" \
