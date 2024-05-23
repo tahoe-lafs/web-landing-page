@@ -5,17 +5,18 @@ services:
       context: docker/jekyll
       args:
         uid: "${_UID:-1000}"
+        user: "${_USER:-appuser}"
         gid: "${_GID:-1000}"
+        group: "${_GROUP:-appgroup}"
     volumes:
-      - .:/home/jekyll/workspace
-    working_dir: /home/jekyll/workspace
+      - .:/appdata
+    working_dir: /appdata
     ports:
       - "4000:4000"
     stdin_open: true
     tty: true
     hostname: jekyll.local
     container_name: jekyll.local
-    command: bash
     networks:
       - bridge
     deploy:

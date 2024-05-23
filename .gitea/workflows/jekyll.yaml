@@ -1,0 +1,45 @@
+name: Jekyll
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  _UID: 1000
+  _GID: 1000
+jobs:
+  jekyll:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository
+        id: checkout
+        uses: actions/checkout@v4
+      - name: Change file ownership
+        id: file_ownership
+        run: |
+          chown -R ${_UID}:${_GID} .
+      - name: Install docker
+        id: install_docker
+        run: |
+          apt-get -q update
+          apt-get -q install -y docker-compose
+          apt-get -q clean
+      - name: Verify docker
+        id: verify_docker
+        run: |
+          docker run --rm hello-world:latest > /dev/null
+          docker rmi hello-world:latest > /dev/null
+          docker version
+          docker-compose version
+          docker volume ls
+      - name: Build Jekyll image
+        id: build_image
+        run: |
+          # The environment variables _UID and _GID can impact this image
+          docker-compose build jekyll
+      - name: Build Jekyll site
+        id: build_site
+        run: |
+          docker-compose run --rm -v "${JOB_CONTAINER_NAME}:/site" -w /site \
+          jekyll build --verbose
