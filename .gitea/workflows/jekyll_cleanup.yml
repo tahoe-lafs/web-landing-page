@@ -18,6 +18,12 @@ jobs:
       actions: read
       contents: read
     steps:
+      - name: Install requirements
+        id: install_requirements
+        run: |
+          apt-get -q update
+          apt-get -q install -y lftp
+          apt-get -q clean
       - name: Cleanup Jeyll preview
         id: cleanup_preview
         run: |
@@ -25,6 +31,5 @@ jobs:
           echo "${{ secrets.WWW_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           # Delete preview context from the remote site
-          sudo apt install -y lftp
           echo -e "set sftp:connect-program ssh -a -x -o StrictHostKeyChecking=no; rm -r -f ${WEB_ROOT}${WEB_CONTEXT}\nbye" \
-          | lftp sftp://${WEB_USER}:unused@${WEB_DOMAN}
+          | lftp sftp://${WEB_USER}:unused@${WEB_DOMAIN}
