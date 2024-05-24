@@ -1,0 +1,28 @@
+comment:
+  glob-options:
+    dot: true
+  snippets:
+    - id: image-{{ imageOutcome }}
+      files:
+        - '**'
+      body: |
+        #### :hammer: Docker build `{{ imageOutcome }}`
+
+    - id: build-{{ buildOutcome }}
+      files:
+        - '**'
+      body: |
+        #### :wrench: Jekyll build `{{ buildOutcome }}`
+
+    - id: deploy-{{ deployOutcome }}
+      files:
+        - '**'
+      body: |
+        #### :rocket: Jekyll deploy `{{ deployOutcome }}`
+        #### :link: Preview site [here](https://{{ deployWebHost }}{{ deployWebContext }})
+
+    - id: pusher-{{ gitActor }}-{{ gitEventName }}-{{ gitRunNumber }}
+      files:
+        - '**'
+      body: |
+        *Pusher: @{{ gitActor }}, Action: `{{ gitEventName }}`, Workflow: `{{ gitWorkflow }}`, Run: {{ gitRunNumber }}*

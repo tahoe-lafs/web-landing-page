@@ -1,0 +1,30 @@
+name: Jekyll cleanup
+
+# only trigger on pull request closed events
+on:
+  pull_request:
+    types: [ closed ]
+
+env:
+  WEB_DOMAIN: lafs.eval.latfa.net
+  WEB_USER: www
+  WEB_ROOT: /var/www/preview
+  WEB_CONTEXT: "/${{ gitea.event.pull_request.number }}/"
+jobs:
+  jekyll_cleanup:
+    runs-on: ubuntu-22.04
+    permissions:
+      pull-requests: write
+      actions: read
+      contents: read
+    steps:
+      - name: Cleanup Jeyll preview
+        id: cleanup_preview
+        run: |
+          # Prepare ssh key
+          echo "${{ secrets.WWW_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          # Delete preview context from the remote site
+          sudo apt install -y lftp
+          echo -e "set sftp:connect-program ssh -a -x -o StrictHostKeyChecking=no; rm -r -f ${WEB_ROOT}${WEB_CONTEXT}\nbye" \
+          | lftp sftp://${WEB_USER}:unused@${WEB_DOMAN}

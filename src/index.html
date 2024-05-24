@@ -24,7 +24,7 @@ documentation_list:
     url: "https://tahoe-lafs.readthedocs.io/en/latest/about-tahoe.html"
     btn_label: "Read More"
     btn_class: "btn--primary"
-  - image_path: assets/images/manual.jpg
+  - image_path: /assets/images/manual.jpg
     image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
     alt: "manual"
     title: "Manual"
@@ -44,7 +44,7 @@ contribute:
   - title: "Get Involved"
     excerpt: ""
 contribute_list:
-  - image_path: assets/images/mailing.jpg
+  - image_path: /assets/images/mailing.jpg
     image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
     alt: "mailing"
     title: "Mailing list"
@@ -96,10 +96,10 @@ about:
   <div class="grid__item">
     <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
       <div class="archive__item-teaser">
-        <img src="{{post.header.teaser}}" alt="">
+        <img src="{{ post.header.teaser | relative_url }}" alt="">
       </div>
       <h2 class="archive__item-title" itemprop="headline">
-        <a href="{{ post.url }}" rel="permalink">{{ post.title }}</a>
+        <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
       </h2>
       <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt }}</p>
     </article>

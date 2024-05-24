@@ -8,6 +8,9 @@ on:
 env:
   _UID: 1000
   _GID: 1000
+  WEB_DOMAIN: lafs.eval.latfa.net
+  WEB_USER: www
+  WEB_DIR: /var/www
 jobs:
   jekyll:
     runs-on: ubuntu-22.04
@@ -41,18 +44,52 @@ jobs:
       - name: Build Jekyll site
         id: build_site
         run: |
+          # Overwrite the baseurl for previewonly
+          if [ "${{ gitea.event_name }}" = 'pull_request' ]; then
+            echo "Overwriting baseurl for pull_request ${{ gitea.event.pull_request.number }}"
+            sed -i -r -e 's/^baseurl:\s*"([^"]*)"/baseurl: "\1\/${{ gitea.event.pull_request.number }}"/' _config.yml
+            grep "^baseurl:" _config.yml
+          fi
           docker-compose run --rm -v "${JOB_CONTAINER_NAME}:/site" -w /site \
           jekyll build --verbose
-      - name: Prepare ssh key
-        id: prepare_ssh_key
-        if: ${{ gitea.ref == 'refs/heads/main' }}
+      - name: Deploy Jekyll site
+        id: deploy_site
         run: |
+          if [ "${{ gitea.ref }}" = 'refs/heads/main' ]; then
+            WEB_ROOT="${WEB_DIR}/site"
+            WEB_HOST="www.${WEB_DOMAIN}"
+            WEB_CONTEXT='/'
+          else
+            WEB_ROOT="${WEB_DIR}/preview"
+            WEB_HOST="preview.${WEB_DOMAIN}"
+            WEB_CONTEXT='/${{ gitea.event.pull_request.number }}/'
+          fi
+          # Save those variabes in the environment for the next steps
+          echo "WEB_HOST=${WEB_HOST}" >> $GITHUB_ENV
+          echo "WEB_CONTEXT=${WEB_CONTEXT}" >> $GITHUB_ENV
+          # Prepare ssh key
           echo "${{ secrets.WWW_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-      - name: Publish Jekyll site
-        id: publish_site
-        if: ${{ gitea.ref == 'refs/heads/main' }}
-        run: |
-          rsync -halvi \
+          # Synchronize the local and the remote site
+          rsync -halvi --delete \
             -e "ssh -a -x -o StrictHostKeyChecking=no" \
-            ./_site/ www@lafs.eval.latfa.net:/var/www/site/
+            ./_site/ "${WEB_USER}@${WEB_DOMAIN}:${WEB_ROOT}${WEB_CONTEXT}"
+      - name: Comment pull request
+        id: comment_pull_request
+        if: ${{ always() && gitea.event_name == 'pull_request' }}
+        uses: exercism/pr-commenter-action@v1.5.1
+        with:
+          template-variables: |
+            {
+              "imageOutcome": "${{ steps.build_image.outcome }}",
+              "buildOutcome": "${{ steps.build_site.outcome }}",
+              "deployOutcome": "${{ steps.deploy_site.outcome }}",
+              "deployWebHost": "${{ env.WEB_HOST }}",
+              "deployWebContext": "${{ env.WEB_CONTEXT }}",
+              "gitActor": "${{ gitea.actor }}",
+              "gitEventName": "${{ gitea.event_name }}",
+              "gitWorkflow": "${{ gitea.workflow }}",
+              "gitRunNumber": "${{ gitea.run_number }}",
+              "gitRunAttempt": "${{ gitea.run_attempt }}"
+            }
+          config-file: ".gitea/pr-commenter.yml"

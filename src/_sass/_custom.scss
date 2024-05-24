@@ -12,24 +12,24 @@
 }*/
 /*
 .page__hero--overlay {
-  background: url(/assets/images/pattern-4.gif) repeat left top;
+  background: url(../images/pattern-4.gif) repeat left top;
 }
 */
 .initial-content {
   //position: relative;
   //top: 70px;
-  background: url(/assets/images/pattern-1.png) repeat left top;
+  background: url(../images/pattern-1.png) repeat left top;
 }
 /*
 #about {
-  background: url(/assets/images/pattern-2.gif) repeat left top;
+  background: url(../images/pattern-2.gif) repeat left top;
 }
 
 @font-face {
   font-family: "homestead_regularregular";
   font-style: normal;
   font-weight: normal;
-  src: url("/assets/fonts/homestead-regular-webfont.woff") format("woff");
+  src: url("../fonts/homestead-regular-webfont.woff") format("woff");
 }
 
 h1, h2, h3, h4, h5, h6, .archive__item-title, .masthead__inner-wrap {
