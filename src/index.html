@@ -49,38 +49,43 @@ contribute_list:
     image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
     alt: "mailing"
     title: "Mailing list"
-    excerpt: "Join the tahoe-dev mailing list.<br/><br/><br/><br/>"
-    url: "https://lists.tahoe-lafs.org/mailman/listinfo/tahoe-dev"
-    btn_label: "Subscribe"
-    btn_class: "btn--primary"
+    excerpt: 'Join <a href="https://lists.tahoe-lafs.org/mailman/listinfo/tahoe-dev" target="_blank">the **tahoe-dev** mailing list</a>.'
   - image_path: /assets/images/messaging.jpg
     image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
     alt: "messaging"
     title: "Instant messaging"
-    excerpt: "Join the **#tahoe-lafs** channel on [Libera](https://libera.chat/) or [Matrix](https://app.element.io/#/room/#tahoe-lafs:libera.chat).<br/><br/><br/>"
-    url: "https://libera.chat/"
-    btn_label: "Chat"
-    btn_class: "btn--primary"
+    excerpt: 'Join the **#tahoe-lafs** channel on <a href="https://libera.chat/" target="_blank">Libera</a> or <a href="https://app.element.io/#/room/#tahoe-lafs:libera.chat">Matrix</a>.'
   - image_path: /assets/images/meet.jpg
     image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
     alt: "meet"
     title: "Meeting"
-    excerpt: "Join our Tuesday 1700 UTC weekly meetings for project governance (first Tuesday of the month) and technical (other Tuesdays) discussion."
-    url: "https://meet.jit.si/AccurateFiltersManipulateBefore"
-    btn_label: "Call"
-    btn_class: "btn--primary"
+    excerpt: 'Join our <a href="https://meet.jit.si/AccurateFiltersManipulateBefore" target="blank">**Tuesday 1700 UTC weekly meetings**</a> for project governance (first Tuesday of the month) and technical (other Tuesdays) discussion.'
 blog:
   - title: "News"
     excerpt: "Find here under a list of the latest articles on the subjects that matter for us."
 about:
-  - image_path: /assets/images/volunteers.jpg
-    image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
-    alt: "about image"
-    title: "Volunteers"
+  - title: "About us"
     excerpt: "Here comes something about us..."
+about_list:
+  - title: "Volunteers"
+    excerpt: "Tahoe-LAFS is an open-source project supported by donations and maintained by a group of hardy volunteers...<br/>"
     url: "https://tahoe-lafs.org/trac/tahoe-lafs/wiki/AboutUs"
     btn_label: "Read More"
     btn_class: "btn--primary"
+  - title: "Donation"
+    excerpt: 'You can donate to the Tahoe-LAFS project via BitCoin and PayPal.<br/><br/>
+    <a href="https://tahoe-lafs.org/trac/tahoe-lafs/wiki/BitCoinPage" target="_blank">
+    <img src="assets/images/bitcoin.png"></a>
+    <a href="https://www.paypal.com/donate?cmd=_s-xclick&hosted_button_id=XQM2LB4UC8V2J" target="_blank">
+    <img src="assets/images/paypal.png"></a>'
+  - title: "Sponsorship"
+    excerpt: "Please contact *secorp at secorp dot net* if you would like to sponsor Tahoe-LAFS."
+  - title: "Least Authority"
+    excerpt: '<a href="https://leastauthority.com/community-matters/open-source-development/" target="_blank">Least Authority</a> sells service and support for LAFS as well as developing improvements for LAFS and contributing them back to the Free and Open Source project.'
+  - title: "Google"
+    excerpt: 'Google, Inc. sponsored Tahoe-LAFS through its <a href="https://www.google-melange.com/archive/gsoc/2010/orgs/tahoe_lafs" target="_blank">Google Summer of Code</a> program in 2010 and 2013.<br/>'
+  - title: "Atlas Networks"
+    excerpt: '<a href="https://atlasnet.com/" target="_blank">Atlas Networks</a> provides dedicated server hosting for scale and performance testing.<br/>'
 ---
 <div id="documentation">
 {% include feature_row id="documentation" type="center" %}
@@ -108,5 +113,6 @@ about:
   {% endfor %}
 </div>
 <div id="about">
-{% include feature_row id="about" type="right" %}
+{% include feature_row id="about" type="center" %}
+{% include feature_row id="about_list" %}
 </div>
