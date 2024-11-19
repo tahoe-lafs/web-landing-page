@@ -17,8 +17,7 @@ services:
     tty: true
     hostname: jekyll.local
     container_name: jekyll.local
-    networks:
-      - bridge
+    network_mode: "bridge"
     deploy:
       resources:
         limits:

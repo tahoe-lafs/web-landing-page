@@ -3,37 +3,32 @@ title: "Welcome <i>The</i> Least-Authority File Store"
 layout: splash
 author_profile: false
 header:
-  overlay_color: "#000"
-  overlay_filter: "0.4"
-  overlay_image: /assets/images/overlay.jpg
+  overlay_color: "#101820"
   actions:
     - label: "Download"
       url: "https://tahoe-lafs.org/downloads"
-  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
-excerpt: "Tahoe-LAFS is a Free and Open decentralized cloud storage system.
+excerpt: >-
+  Tahoe-LAFS is a Free and Open decentralized cloud storage system.
   It distributes your data across multiple servers.<br/>
   Even if some of the servers fail or are taken over by an attacker,
-  the entire file store continues to function correctly, preserving your privacy and security."
+  the entire file store continues to function correctly, preserving your privacy and security.
 documentation:
-  - title: "Read Some Nice Docs"
+  - title: "Documentation"
 documentation_list:
-  - image_path: /assets/images/overview.jpg
-    image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
+  - image_path: /assets/images/overview.png
     alt: "overview"
     title: "Overview"
     excerpt: '
       This [one-page summary](https://tahoe-lafs.readthedocs.io/en/latest/about-tahoe.html) explains the unique properties of this system
     '
-  - image_path: /assets/images/manual.jpg
-    image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
+  - image_path: /assets/images/manual.png
     alt: "manual"
     title: "Manual"
     excerpt: '<ul>
       <li><a href="https://tahoe-lafs.readthedocs.io/en/latest/Installation/install-tahoe.html">Installation Instructions</a></li>
       <li><a href="http://tahoe-lafs.readthedocs.org/">Tahoe-LAFS Manual</a></li>
     </ul>'
-  - image_path: /assets/images/wiki.jpg
-    image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
+  - image_path: /assets/images/wiki.png
     alt: "wiki"
     title: "Wiki"
     excerpt: '<ul>
@@ -41,31 +36,25 @@ documentation_list:
       <li><a href="https://tahoe-lafs.org/trac/tahoe-lafs/wiki/FAQ">Frequently Asked Questions</a></li>
     </ul>'
 contribute:
-  - title: "Get Involved"
+  - title: "Contribute"
     excerpt: ""
 contribute_list:
-  - image_path: /assets/images/messaging.jpg
-    image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
+  - image_path: /assets/images/discussions.png
     alt: "discussions"
     title: "Discussions"
     excerpt: '<ul>
       <li>Join <a href="https://lists.tahoe-lafs.org/mailman/listinfo/tahoe-dev" target="_blank">the <b>tahoe-dev</b></a> mailing list</li>
       <li>Join the <a href="https://libera.chat/" target="_blank"><b>#tahoe-lafs</b></a> channel on Libera</li>
-      <li>Join our <a href="https://meet.jit.si/AccurateFiltersManipulateBefore" target="blank"><b>Tuesday 1700 UTC meetings</b></a>
-      <ul>
-        <li>First of the month for project governance</li>
-        <li>Others for technical discussions</li>
+      <li>Meet us on <a href="https://meet.jit.si/AccurateFiltersManipulateBefore" target="blank"><b>Tuesday</b></a> at 17:00 UTC on Jitsi </li>
     </ul>'
-  - image_path: /assets/images/tickets.jpg
-    image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
+  - image_path: /assets/images/issues.png
     alt: "issues"
     title: "Issues"
     excerpt: '<ul>
       <li>Visit the <a href="https://code.lafs.eval.latfa.net/tahoe-lafs/trac/issues"><b>issue</b></a> tracker</li>
       <li>Register an <a href="https://code.lafs.eval.latfa.net/user/sign_up"><b>account</b></a> to interact</li>
     </ul>'
-  - image_path: /assets/images/code.jpg
-    image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
+  - image_path: /assets/images/code.png
     alt: "code"
     title: "Code"
     excerpt: '<ul>
@@ -73,11 +62,11 @@ contribute_list:
       <li>Submit pull request with a valid issue number</li>
     </ul>'
 blog:
-  - title: "News"
-    excerpt: "Find here under a list of the latest articles on the subjects that matter for us."
+  - title: "Latest News"
+    excerpt: ""
 about:
   - title: "About us"
-    excerpt: "Here comes something about us..."
+    excerpt: ""
 about_list:
   - title: "Volunteers"
     excerpt: "Tahoe-LAFS is an open-source project supported by donations and maintained by a group of hardy volunteers...<br/>"
@@ -103,10 +92,12 @@ about_list:
 {% include feature_row id="documentation" type="center" %}
 {% include feature_row id="documentation_list" %}
 </div>
+
 <div id="contribute">
 {% include feature_row id="contribute" type="center" %}
 {% include feature_row id="contribute_list" %}
 </div>
+
 <div id="blog">
 {% include feature_row id="blog" type="center" %}
 <div class="entries-grid">
@@ -124,6 +115,8 @@ about_list:
   </div>
   {% endfor %}
 </div>
+</div>
+
 <div id="about">
 {% include feature_row id="about" type="center" %}
 {% include feature_row id="about_list" %}

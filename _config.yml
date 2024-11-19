@@ -30,7 +30,7 @@ incremental: false
 
 #theme: minima
 theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: dirt # Out of "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
+minimal_mistakes_skin: default # Out of "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
 logo: "/assets/images/logo_199x300.png"
 locale: "en-US"
 
