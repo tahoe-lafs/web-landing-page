@@ -1,5 +1,5 @@
 # Pull base image from official repo
-FROM rubylang/ruby:3.3.0-jammy
+FROM ruby:3.3.6-slim-bookworm
 
 # Install some required packages for building Gems
 RUN INSTALL_PKGS="gcc g++ libyaml-dev make nodejs" && \
