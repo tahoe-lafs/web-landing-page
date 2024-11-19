@@ -114,7 +114,6 @@ defaults:
     values:
       layout: single
       author_profile: false
-      share: true
 
 category_archive:
   type: jekyll-archives
