@@ -52,6 +52,10 @@ body {
   margin-bottom: unset;
 }
 
+.archive__item-teaser {
+  background-image: url('../images/icon_background.png');
+}
+
 .feature__item {
   background-color: #eee;
   margin-bottom: 1em;
@@ -72,7 +76,6 @@ body {
   height: 80px;
   width: auto;
   display: block;
-  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
 }
