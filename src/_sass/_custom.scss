@@ -68,10 +68,18 @@ body {
 }
 
 .feature__item .archive__item-teaser img {
-  width: initial;
+  height: 80px;
+  width: auto;
   display: block;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
+}
+
+#contribute .feature__item .archive__item-teaser img {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 20px;
 }
 
 .feature__item .btn {
