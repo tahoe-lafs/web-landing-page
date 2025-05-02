@@ -7,16 +7,15 @@ It gives guidance on getting started for end-users, developers building with Tah
 
 ## Building
 
-This web page is built and deployed by CI.
+This web page is built and deployed by CI.  A preview is also automaticaly genereated for PRs made from branches local to this repository (require push/write permission).
 
 If you want to pre-view your changes on your local machine before pushing commits, you might want to start a development server.
 
-Issuing this command on a system with Docker runs a web server on http://localhost:4000/ that re-builds the page automatically on source file change:
+Issuing this command on a system with Docker runs a web server on http://localhost:4000/ that re-builds and refresh the page automatically on source file change:
 
 ```sh
 docker-compose up
 ```
-
 
 ## Contributing
 

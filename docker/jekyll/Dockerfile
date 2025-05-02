@@ -40,4 +40,4 @@ RUN echo "gem: --no-document --user-install --bindir /home/${user}/bin" >> /home
 ENV PATH=/home/${user}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ENTRYPOINT ["jekyll"]
-CMD ["server", "--verbose", "--host", "0.0.0.0", "--incremental"]
+CMD ["server", "--verbose", "--host", "0.0.0.0", "--incremental", "--livereload"]
