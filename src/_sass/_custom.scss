@@ -105,6 +105,13 @@ body {
   margin-bottom: auto;
 }
 
+#contribute .feature__item {
+  @media (min-width: 37.5em) {
+    width: 45%;
+    margin-inline-start: 3.3%;
+  }
+}
+
 #blog {
   margin-top: 2em;
   background-color: #eee;
