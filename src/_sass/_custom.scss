@@ -85,11 +85,6 @@
   border-radius: 20px;
 }
 
-.feature__item .btn {
-  background-color: #0075a2;
-  color: #fff;
-}
-
 .feature__item .btn:hover {
    background-color: #777;
    color: #fff;
@@ -147,8 +142,13 @@
   background-color: #fff;
 }
 
-#about .feature__item .archive__item-title {
-  padding-top: 0.5em;
+#about .feature__wrapper .btn {
+  background-color: #0075a2;
+  color: #fff;
+}
+
+#about .archive__item-title {
+  margin-top: 0.5em;
 }
 
 .feature__item--center {
