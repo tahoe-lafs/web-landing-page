@@ -8,7 +8,7 @@ on:
 env:
   _UID: 1000
   _GID: 1000
-  WEB_DOMAIN: lafs.eval.latfa.net
+  WEB_DOMAIN: 87b59b92.nip.io
   WEB_USER: www
   WEB_DIR: /var/www
 jobs:
@@ -18,7 +18,6 @@ jobs:
       - name: Check out repository
         id: checkout
         uses: actions/checkout@v4
-        github-server-url: 'https://forge.87b59b92.nip.io/'
       - name: Change file ownership
         id: file_ownership
         run: |
