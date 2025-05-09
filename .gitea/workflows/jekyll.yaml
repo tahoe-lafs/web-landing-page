@@ -77,7 +77,7 @@ jobs:
       - name: Comment pull request
         id: comment_pull_request
         if: ${{ always() && gitea.event_name == 'pull_request' }}
-        uses: exercism/pr-commenter-action@v1.5.1
+        uses: https://github.com/exercism/pr-commenter-action@v1.5.1
         with:
           template-variables: |
             {
