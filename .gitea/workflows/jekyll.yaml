@@ -8,7 +8,8 @@ on:
 env:
   _UID: 1000
   _GID: 1000
-  WEB_DOMAIN: 87b59b92.nip.io
+  WEB_DOMAIN: tahoe-lafs.org
+  WEB_HOST: webforge.of.tahoe-lafs.org
   WEB_USER: bot-www
   WEB_DIR: /var/www
 jobs:
@@ -18,7 +19,7 @@ jobs:
       - name: Check out repository
         id: checkout
         uses: actions/checkout@v4
-        github-server-url: 'https://forge.87b59b92.nip.io/'
+        github-server-url: 'https://forge.of.tahoe-lafs.org/'
       - name: Change file ownership
         id: file_ownership
         run: |
@@ -45,7 +46,7 @@ jobs:
       - name: Build Jekyll site
         id: build_site
         run: |
-          # Overwrite the baseurl for previewonly
+          # Overwrite the baseurl for preview only
           if [ "${{ gitea.event_name }}" = 'pull_request' ]; then
             echo "Overwriting baseurl for pull_request ${{ gitea.event.pull_request.number }}"
             sed -i -r -e 's/^baseurl:\s*"([^"]*)"/baseurl: "\1\/${{ gitea.event.pull_request.number }}"/' _config.yml
@@ -57,16 +58,17 @@ jobs:
         id: deploy_site
         run: |
           if [ "${{ gitea.ref }}" = 'refs/heads/main' ]; then
-            WEB_ROOT="${WEB_DIR}/site"
-            WEB_HOST="www.${WEB_DOMAIN}"
+            WEB_ROOT="${WEB_DIR}/live"
+            WEB_VHOST="home.of.${WEB_DOMAIN}"
             WEB_CONTEXT='/'
           else
             WEB_ROOT="${WEB_DIR}/preview"
-            WEB_HOST="preview.${WEB_DOMAIN}"
+            WEB_VHOST="preview.of.${WEB_DOMAIN}"
             WEB_CONTEXT='/${{ gitea.event.pull_request.number }}/'
           fi
           # Save those variabes in the environment for the next steps
           echo "WEB_HOST=${WEB_HOST}" >> $GITHUB_ENV
+          echo "WEB_VHOST=${WEB_VHOST}" >> $GITHUB_ENV
           echo "WEB_CONTEXT=${WEB_CONTEXT}" >> $GITHUB_ENV
           # Prepare ssh key
           echo "${{ secrets.WWW_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
@@ -74,7 +76,7 @@ jobs:
           # Synchronize the local and the remote site
           rsync -halvi --delete \
             -e "ssh -a -x -o StrictHostKeyChecking=no" \
-            ./_site/ "${WEB_USER}@${WEB_DOMAIN}:${WEB_ROOT}${WEB_CONTEXT}"
+            ./_site/ "${WEB_USER}@${WEB_HOST}:${WEB_ROOT}${WEB_CONTEXT}"
       - name: Comment pull request
         id: comment_pull_request
         if: ${{ always() && gitea.event_name == 'pull_request' }}
@@ -85,7 +87,7 @@ jobs:
               "imageOutcome": "${{ steps.build_image.outcome }}",
               "buildOutcome": "${{ steps.build_site.outcome }}",
               "deployOutcome": "${{ steps.deploy_site.outcome }}",
-              "deployWebHost": "${{ env.WEB_HOST }}",
+              "deployWebHost": "${{ env.WEB_VHOST }}",
               "deployWebContext": "${{ env.WEB_CONTEXT }}",
               "gitActor": "${{ gitea.actor }}",
               "gitEventName": "${{ gitea.event_name }}",
