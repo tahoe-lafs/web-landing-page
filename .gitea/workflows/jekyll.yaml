@@ -18,6 +18,7 @@ jobs:
       - name: Check out repository
         id: checkout
         uses: actions/checkout@v4
+        github-server-url: 'https://forge.87b59b92.nip.io/'
       - name: Change file ownership
         id: file_ownership
         run: |
