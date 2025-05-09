@@ -57,11 +57,11 @@ jobs:
         run: |
           if [ "${{ gitea.ref }}" = 'refs/heads/main' ]; then
             WEB_ROOT="${WEB_DIR}/site"
-            WEB_HOST="www.${WEB_DOMAIN}"
+            WEB_HOST="live.www.${WEB_DOMAIN}"
             WEB_CONTEXT='/'
           else
             WEB_ROOT="${WEB_DIR}/preview"
-            WEB_HOST="preview.${WEB_DOMAIN}"
+            WEB_HOST="preview.www.${WEB_DOMAIN}"
             WEB_CONTEXT='/${{ gitea.event.pull_request.number }}/'
           fi
           # Save those variabes in the environment for the next steps
