@@ -8,8 +8,8 @@ on:
 env:
   _UID: 1000
   _GID: 1000
-  WEB_DOMAIN: lafs.eval.latfa.net
-  WEB_USER: www
+  WEB_DOMAIN: 87b59b92.nip.io
+  WEB_USER: bot-www
   WEB_DIR: /var/www
 jobs:
   jekyll:
