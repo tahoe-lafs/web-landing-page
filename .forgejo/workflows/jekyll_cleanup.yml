@@ -9,7 +9,7 @@ env:
   WEB_HOST: webforge.of.tahoe-lafs.org
   WEB_USER: www
   WEB_ROOT: /var/www/preview
-  WEB_CONTEXT: "/${{ gitea.event.pull_request.number }}/"
+  WEB_CONTEXT: "/${{ forge.event.pull_request.number }}/"
 jobs:
   jekyll_cleanup:
     runs-on: ubuntu-22.04
