@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "New landing page"
-date:   2024-05-29 21:47:57 +0200
+date:   2025-08-13 18:23:00 +0200
 excerpt: "The old Tahoe-LAFS landing page is gone!"
 header:
   teaser: /assets/images/posts/old-landing-page-teaser.png
